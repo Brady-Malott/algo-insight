@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maze Algorithms Visualizer</title>
+    <link rel="stylesheet" href="css/mazes.css" />
+  </head>
+
+  <body>
+    <header id="main-header">
+      <nav id="navbar" class="navbar bg-dark">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="searching.html" class="nav-btn">Searching</a>
+        <a href="sorting.html" class="nav-btn">Sorting</a>
+        <a href="#" class="nav-btn">Mazes</a>
+      </nav>
+    </header>
+    <div class="wrapper">
+      <div class="flex-container">
+        <!-- Side Menu -->
+        <section id="sidebar-left">
+          <div class="bg-secondary sidemenu">
+            <div class="menu-container">
+              <div class="menu-box">
+                <div id="size" class="menu-btn btn">Size</div>
+                <div class="menu-dropdown">
+                  <div class="menu-option">Small</div>
+                  <div class="menu-option">Medium</div>
+                  <div class="menu-option">Large</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-container">
+              <div class="menu-box">
+                <div id="algorithm" class="menu-btn btn">Algorithm</div>
+                <div class="menu-dropdown">
+                  <div class="menu-option">Wilson</div>
+                  <div class="menu-option">Depth First Search</div>
+                  <div class="menu-option">Prim</div>
+                  <div class="menu-option">Kruskal</div>
+                  <div class="menu-option">Recursive Division</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-container">
+              <div class="menu-box">
+                <div id="colour" class="menu-btn btn">Trail Colour</div>
+                <div class="menu-dropdown">
+                  <div class="menu-option">Orange</div>
+                  <div class="menu-option">Green</div>
+                  <div class="menu-option">Blue</div>
+                  <div class="menu-option">Purple</div>
+                </div>
+              </div>
+            </div>
+            <a href="#" id="generate-maze" class="menu-submit btn"
+              >Generate Maze</a
+            >
+            <a href="#" id="solve-maze" class="menu-submit btn">Solve Maze</a>
+          </div>
+          <div class="bg-secondary sidedesc">
+            <div class="wilson-desc">
+              <h2>Wilson's Algorithm</h2>
+              <p>
+                Start by creating a maze board with empty tiles that are
+                surrounded by a grid of maze walls.
+              </p>
+              <p>Pick an initial tile and mark it as a part of the maze.</p>
+              <p>
+                Start a random walk from a random tile that is not yet in the
+                maze. Each time you walk to a new tile, store the direction of
+                your next step on that tile. Continue walking randomly until you
+                find a tile that is in the maze.
+              </p>
+              <p>
+                Go back to where the random walk started and perform a "loop
+                erasing walk". Follow the directions stored at each walked
+                square, and mark the square (as well as the wall being pointed
+                to) as parts of the maze (the broken wall becomes a passage, and
+                the walked tile becomes a breadcrumb). Note that this will cut
+                out any loops, because any square that is revisited in the
+                random walk will be updated with a new direction.
+              </p>
+              <p>
+                Keep performing random walks and loop erasing walks until every
+                tile is visited. Then, break open a random point in the starting
+                wall and the outer wall, and mark these points as the start and
+                exit respectively. Lastly, erase the breadcrumbs.
+              </p>
+            </div>
+            <div class="dfs-desc">
+              <h2>Randomized Depth First Search</h2>
+              <p>
+                1. Start by creating a maze board with empty tiles that are
+                surrounded by a grid of maze walls.
+              </p>
+              <p>
+                2. Pick an initial tile adjacent to the starting area at the
+                center. Break the wall in between the tile and the center area.
+                Mark this broken wall as the start.
+              </p>
+              <p>3. Mark this tile with a breadcrumb.</p>
+              <p>
+                4. Get a list of the empty neighbour tiles. Select a random tile
+                and break the wall between the current tile and the selected
+                tile. Then repeat steps 3-4 for the selected tile.
+              </p>
+              <p>
+                Note: If a tile has no unvisited neighbours (i.e. all the
+                neighbours are marked with breadcrumbs), then backtrack to the
+                previous tile. This is implemented with recursion.
+              </p>
+            </div>
+            <div class="prim-desc">
+              <h2>Prim's Algorithm</h2>
+              <p>
+                Start by creating a maze board with empty tiles that are
+                surrounded by a grid of maze walls.
+              </p>
+              <p>
+                Pick an initial tile adjacent to the center area and mark it as
+                a part of the maze.
+              </p>
+              <p>
+                Create a list to store walls, and add the walls that are
+                adjacent to the initial tile to the list.
+              </p>
+              <p>
+                While there are still walls in the list, remove a random wall
+                from the list and get the cells adjacent to it. If one of these
+                cells is not yet in the maze, break the wall, add the cell to
+                the maze, and add this cells neighbour walls to the wall list.
+              </p>
+              <p>
+                If both cells were already in the maze, then the wall is just
+                removed from the list. Once there are no more walls in the wall
+                list, set the exit tile on the outer wall and remove the
+                breadcrumbs.
+              </p>
+            </div>
+            <div class="kruskal-desc">
+              <h2>Kruskal's Algorithm</h2>
+              <p>
+                Start by creating a maze board with empty tiles that are
+                surrounded by a grid of maze walls. These tiles are already
+                marked as part of the maze (as "passages", shown as white
+                squares).
+              </p>
+              <p>
+                Store a list of unchecked walls, comprised of the walls that are
+                adjacent to white squares. This excludes junctions and the outer
+                wall.
+              </p>
+              <p>
+                Create a list of "cell sets", where a set is a group of unique
+                items. Initially, each white tile has a corresponding set that
+                stores its position in the maze.
+              </p>
+              <p>
+                While there are still unchecked walls, select a random wall and
+                get its 2 adjacent cells. For each adjacent cell, store the set
+                that contains it in a list. If these sets are equal (i.e. these
+                tiles are already connected in the maze), then just remove the
+                wall from the unchecked walls list. If the cells belong to
+                different sets, make the wall a passage, remove the two sets
+                from the list of cell sets, and add the union of the two sets to
+                the list of cell sets. The union of two sets is the set of
+                unique entries from the combined sets.
+              </p>
+              <p>
+                Once every wall has been checked, then the whole maze will be
+                connected, and there will be only one "cell set" in the cell
+                sets list.
+              </p>
+            </div>
+            <div class="rd-desc">
+              <h2>Recursive Division</h2>
+              <p>
+                Start by creating a maze board with just an outer wall. The
+                board must be an odd number of tiles wide and high.
+              </p>
+              <p>
+                Make a vertical and horizontal divide through the maze chamber
+                (you can only divide the maze into chambers of odd dimensions as
+                well).
+              </p>
+              <p>
+                Outward from the intersection of the walls spans 4 wall
+                segments. Make a hole in 3 of these segments. Note that the hole
+                may not be in the same line as a potential wall for its adjacent
+                subchambers.
+              </p>
+              <p>
+                Make a recursive function call on the 4 new subchambers. Repeat
+                this process until every subchamber is either 1 tile wide or
+                long.
+              </p>
+              <p>
+                Lastly, break open 2 of the 4 outer walls. Make one the starting
+                point and one the exit point.
+              </p>
+            </div>
+            <div class="solve-desc">
+              <h2>Recursive-Backtracking Solver</h2>
+              <p>1. Start from the green start tile.</p>
+              <p>
+                2. Begin by checking if this tile is the exit. If it is the
+                exit, the maze is solved (the solver function returns true).
+                Otherwise, mark the tile as visited (yellow tiles are visited).
+              </p>
+              <p>
+                3. If the tile is not the exit, search for any neighbour
+                "passage" tiles (excluding the center) and store them in an
+                array. The passages are the tiles with a white background.
+              </p>
+              <p>
+                4. Make a recursive call for each of the unvisited neighbour
+                tiles (i.e. repeat step 2-3 on each neighbour). If one of the
+                neighbours leads to the exit, true will be returned up the
+                recursion stack. In this case, do not search the other unvisited
+                neighbours.
+              </p>
+              <p>
+                5. As true is returned up the recursion stack, colour each tile
+                that is backtracked over golden yellow to mark it as a part of
+                the solution.
+              </p>
+              <p>6. Reset all visited tiles to white "passage" tiles.</p>
+            </div>
+          </div>
+        </section>
+        <!-- Maze Area -->
+        <section id="maze-board">
+          <div class="maze-container"></div>
+        </section>
+      </div>
+      <!-- Footer (shown until flex container is on column flow (mobile)) -->
+      <footer id="#main-footer" class="footer bg-dark">
+        Copyright &copy; Brady Malott 2020
+      </footer>
+    </div>
+    <script src="js/mazes.js"></script>
+  </body>
+</html>

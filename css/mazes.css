@@ -1,0 +1,315 @@
+/* Reset and Body */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Utility Classes */
+.bg-dark {
+  background: #333;
+  color: white;
+}
+
+.bg-primary {
+  background: rgb(7, 134, 238);
+  color: white;
+}
+
+.bg-secondary {
+  background: rgb(35, 34, 90);
+  color: white;
+}
+
+.btn {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Navbar */
+#main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar {
+  min-width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.navbar .nav-btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #ddd;
+  font-size: 18px;
+  height: 45px;
+}
+
+.navbar .nav-btn:hover {
+  background: #444;
+  text-decoration: #ddd underline;
+}
+
+.wrapper {
+  min-width: fit-content;
+}
+
+.flex-container {
+  margin-top: 45px;
+  display: flex;
+  min-height: 90vh;
+}
+
+/* Sidebar */
+.sidemenu {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidemenu .menu-container {
+  flex: 1;
+  width: 90%;
+  padding-top: 10px;
+  text-align: center;
+}
+
+/* Styles for the side description bar (replaces the side menu) */
+.sidedesc {
+  display: none;
+  height: 100%;
+  width: 300px;
+  padding: 1rem;
+}
+
+.sidedesc h2 {
+  text-decoration: underline;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.sidedesc p {
+  margin-bottom: 10px;
+}
+
+/* Each description is initially not displayed */
+.sidedesc .wilson-desc {
+  display: none;
+}
+
+.sidedesc .dfs-desc {
+  display: none;
+}
+
+.sidedesc .prim-desc {
+  display: none;
+}
+
+.sidedesc .kruskal-desc {
+  display: none;
+}
+
+.sidedesc .rd-desc {
+  display: none;
+}
+
+.sidedesc .solve-desc {
+  display: none;
+}
+
+/* Menu Boxes */
+.menu-box {
+  background: rgb(52, 51, 129);
+  border-radius: 5px;
+}
+
+.menu-btn {
+  padding: 10px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.menu-btn:hover {
+  background: rgb(66, 65, 160);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.menu-dropdown {
+  display: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.menu-dropdown .menu-option:hover {
+  background: rgb(66, 65, 160);
+}
+
+.menu-dropdown .menu-option {
+  padding: 5px;
+}
+
+.menu-dropdown .menu-option:last-child:hover {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.menu-box:hover > .menu-dropdown {
+  display: block;
+}
+
+/* Menu Submit */
+.menu-submit {
+  background: rgb(52, 51, 129);
+  width: 90%;
+  color: white;
+  font-weight: bold;
+  margin: 10px 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.menu-submit:hover {
+  background: rgb(66, 65, 160);
+}
+
+.menu-submit:active {
+  cursor: default;
+}
+
+/* Initially hide the solve button */
+#solve-maze {
+  display: none;
+}
+
+/* Maze Area */
+#maze-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+#maze-board .row {
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+#maze-board .row:nth-child(even) {
+  background: #999;
+}
+
+#maze-board .row:nth-child(odd) {
+  background: #aaa;
+}
+
+#maze-board .row .square {
+  min-width: 10px;
+  min-height: 10px;
+  background: transparent;
+}
+
+#maze-board .row .wall {
+  background: black;
+}
+
+#maze-board .row .passage {
+  background: white;
+}
+
+/* Utility for marking tiles in many maze generation algorithms */
+#maze-board .row .breadcrumb {
+  background: coral;
+}
+
+/* For tiles that are visited during Wilson's randomWalk() */
+#maze-board .row .walked {
+  background: rgb(6, 197, 255);
+}
+
+/* To show the current position of Wilson's randomWalk() */
+#maze-board .row .recent {
+  background: rgb(0, 255, 149);
+}
+
+/* For marked tiles in the recursive backtrack solver */
+#maze-board .row .solve {
+  background: rgb(255, 230, 90);
+}
+
+/* For the tiles that lead to the solution */
+#maze-board .row .solution {
+  background: rgb(216, 178, 8);
+}
+
+#maze-board .row .exit {
+  background: red;
+}
+
+#maze-board .row .start {
+  background: lime;
+}
+
+/* Footer */
+.footer {
+  height: 5vh;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* Phones and Tablets */
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .flex-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: fit-content;
+  }
+
+  /* Bring sidebar to the top */
+  .sidemenu {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Bring side description to the top */
+  .sidedesc {
+    width: 100%;
+  }
+
+  .sidemenu .menu-container {
+    flex: none;
+  }
+
+  .sidemenu .menu-submit {
+    margin-top: 10px;
+  }
+
+  .navbar .nav-btn {
+    padding: 10px 10px;
+  }
+
+  /* #maze-board .maze-container {
+    padding-right: 20px;
+  } */
+}

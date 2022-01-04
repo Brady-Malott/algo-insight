@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Searching Algorithms Visualizer</title>
+    <link rel="stylesheet" href="css/searching.css" />
+  </head>
+
+  <body>
+    <header id="main-header">
+      <nav id="navbar" class="navbar bg-dark">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="#" class="nav-btn">Searching</a>
+        <a href="sorting.html" class="nav-btn">Sorting</a>
+        <a href="mazes.html" class="nav-btn">Mazes</a>
+      </nav>
+    </header>
+    <div class="flex-container">
+      <!-- Side Menu -->
+      <section id="sidebar-left">
+        <div class="bg-secondary sidemenu">
+          <div class="menu-container">
+            <div class="menu-box">
+              <div id="length" class="menu-btn btn">Array Length</div>
+              <div class="menu-dropdown">
+                <div class="menu-option">Small (50)</div>
+                <div class="menu-option">Medium (150)</div>
+                <div class="menu-option">Large (300)</div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-container">
+            <div class="menu-box">
+              <div id="algorithm" class="menu-btn btn">Algorithm</div>
+              <div class="menu-dropdown">
+                <div class="menu-option">Linear Search</div>
+                <div class="menu-option">Binary Search</div>
+                <div class="menu-option">Jump Search</div>
+                <div class="menu-option">Interpolation Search</div>
+                <div class="menu-option">Exponential Search</div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-container">
+            <div class="menu-box">
+              <div id="colour" class="menu-btn btn">Highlight Colour</div>
+              <div class="menu-dropdown">
+                <div class="menu-option">Red</div>
+                <div class="menu-option">Orange</div>
+                <div class="menu-option">Yellow</div>
+                <div class="menu-option">Green</div>
+                <div class="menu-option">Blue</div>
+                <div class="menu-option">Purple</div>
+              </div>
+            </div>
+          </div>
+          <a href="#" id="search" class="menu-submit btn">Search</a>
+        </div>
+        <div class="bg-secondary sidedesc">
+          <div class="linear-desc">
+            <h2>Linear Search</h2>
+            <p>Time Complexity: O(n)</p>
+            <p>This algorithm does not require a sorted array.</p>
+            <p>
+              The array is traversed from start to finish to look for the target
+              value.
+            </p>
+          </div>
+          <div class="binary-desc">
+            <h2>Binary Search</h2>
+            <p>Time Complexity: O(log(n))</p>
+            <p>This algorithm requires a sorted array.</p>
+            <p>
+              Begin by setting a start and end bound at the first and last value
+              in the array. Select the middle value between the bounds and check
+              if it is the target. If the middle value is &lt; the target,
+              search the right half of the array. If the middle value is &gt;
+              the target, search the left half of the array.
+            </p>
+            <p>
+              Repeat this process until the value is found or until the left
+              bound passes the right bound (i.e. the value is not in the array)
+            </p>
+          </div>
+          <div class="jump-desc">
+            <h2>Jump Search</h2>
+            <p>Time Complexity: O(&Sqrt;n)</p>
+            <p>This algorithm requires a sorted array.</p>
+            <p>
+              Start by calculating the jump size as the square root of the
+              length of the array. Then, start from the beginning of the array
+              and make jumps of the calculated jump size until you reach a value
+              that is &gt; the target value.
+            </p>
+            <p>
+              Then backtrack using a linear search until you either find the
+              target value or reach the second last jump (i.e. the value does
+              not exist in the array).
+            </p>
+          </div>
+          <div class="interpolation-desc">
+            <h2>Interpolation Search</h2>
+            <p>Time Complexity: O(nlog(n))</p>
+            <p>This algorithm requires a sorted array.</p>
+            <p>
+              Begin by selecting a pivot, which can be any number that is in the
+              array. In this implementation, the pivot is the number in the
+              middle of the array. Now, the array will be "partitioned" based on
+              the pivot.
+            </p>
+            <p>
+              Start a left pointer at the beginning of the array and a right
+              pointer at the end of the array. Advance the left pointer to the
+              right until it points to a number that is &gt;= to the pivot.
+              Advance the right pointer to the left until it points to a number
+              that is &lt;= to the pivot. If the left index is &lt;= to the
+              right index (i.e the pointers have not passed each other), then
+              swap the numbers at the two pointers. After this partition, all of
+              the elements that are &lt; the pivot come before the elements that
+              are &gt; the pivot. Note that the pivot number can be swapped.
+            </p>
+            <p>
+              Wherever the left pointer ends up is the "partition point".
+              Quicksort is recursively called on the two subarrays that are
+              divided by the partition point. If quicksort is called on a length
+              1 subarray, nothing happens (i.e the function immediately
+              returns).
+            </p>
+          </div>
+          <div class="exponential-desc">
+            <h2>Exponential Search</h2>
+            <p>Time Complexity: O(nlog(n))</p>
+            <p>This algorithm requires a sorted array.</p>
+            <p>
+              Begin by dividing the array into halves. Call the merge sort
+              function on the two halves, then merge the sorted halves.
+            </p>
+            <p>
+              The merge function copies the values from the first and second
+              half into a left and right array. Start a pointer from the start
+              of these arrays. Copy the lowest of the values pointed to into the
+              array and advance its pointer. Repeat this until one of the
+              pointers reaches the end of its array. Then copy the rest of the
+              values from the other array into the main array. A pointer keeps
+              track of which index to copy the values into in the main array
+              (this pointer starts from the index of the first number in the
+              left array).
+            </p>
+            <p>
+              Note that merge sort will first divide the array into subarrays of
+              length 1 before merging arrays together. This is due to the
+              recursive implementation, which calls merge sort on the halves
+              before the merge function.
+            </p>
+          </div>
+          <a href="#" id="back" class="menu-submit btn">Back To Menu</a>
+        </div>
+      </section>
+      <!-- Sorting Area -->
+      <section id="searching-area">
+        <div class="select-prompt">Click on a bar to search for it.</div>
+        <div class="searching-container"></div>
+      </section>
+    </div>
+    <!-- Footer -->
+    <footer id="#main-footer" class="footer bg-dark">
+      Copyright &copy; Brady Malott 2020
+    </footer>
+    <script src="js/searching.js"></script>
+  </body>
+</html>

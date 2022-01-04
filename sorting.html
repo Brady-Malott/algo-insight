@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Algorithms Visualizer</title>
+    <link rel="stylesheet" href="css/sorting.css" />
+  </head>
+
+  <body>
+    <header id="main-header">
+      <nav id="navbar" class="navbar bg-dark">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="searching.html" class="nav-btn">Searching</a>
+        <a href="#" class="nav-btn">Sorting</a>
+        <a href="mazes.html" class="nav-btn">Mazes</a>
+      </nav>
+    </header>
+    <div class="flex-container">
+      <!-- Side Menu -->
+      <section id="sidebar-left">
+        <div class="bg-secondary sidemenu">
+          <div class="menu-container">
+            <div class="menu-box">
+              <div id="length" class="menu-btn btn">Array Length</div>
+              <div class="menu-dropdown">
+                <div class="menu-option">Small (50)</div>
+                <div class="menu-option">Medium (150)</div>
+                <div class="menu-option">Large (300)</div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-container">
+            <div class="menu-box">
+              <div id="algorithm" class="menu-btn btn">Algorithm</div>
+              <div class="menu-dropdown">
+                <div class="menu-option">Bubble Sort</div>
+                <div class="menu-option">Insertion Sort</div>
+                <div class="menu-option">Selection Sort</div>
+                <div class="menu-option">Quick Sort</div>
+                <div class="menu-option">Merge Sort</div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-container">
+            <div class="menu-box">
+              <div id="colour" class="menu-btn btn">Highlight Colour</div>
+              <div class="menu-dropdown">
+                <div class="menu-option">Red</div>
+                <div class="menu-option">Orange</div>
+                <div class="menu-option">Yellow</div>
+                <div class="menu-option">Green</div>
+                <div class="menu-option">Blue</div>
+                <div class="menu-option">Purple</div>
+              </div>
+            </div>
+          </div>
+          <a href="#" id="sort" class="menu-submit btn">Sort</a>
+        </div>
+        <div class="bg-secondary sidedesc">
+          <div class="bubble-desc">
+            <h2>Bubble Sort</h2>
+            <p>Time Complexity: O(n<sup>2</sup>)</p>
+            <p>
+              The array is traversed from index 0 to index m, where m starts at
+              the second last index and decreased by 1 after each traversal. As
+              each value is traversed, it is compared to the next value in the
+              array.
+            </p>
+            <p>
+              In this case, we are sorting in ascending order, so if the current
+              value in the traversal is greater than the value immediately after
+              it, the two values are swapped. This guarantees that after each
+              traversal, the bar at the end of this traversal (at index m) is in
+              its final sorted position; hence m decreases with each traversal.
+            </p>
+            <p>
+              Note that in this rendition of bubble sort, if a traversal is made
+              without any swaps, the loop is exited to save some runtime.
+            </p>
+          </div>
+          <div class="insertion-desc">
+            <h2>Insertion Sort</h2>
+            <p>Time Complexity: O(n<sup>2</sup>)</p>
+            <p>
+              Start from the second value in the array. If it is less than the
+              value before it (since we are sorting in ascending order), swap
+              the two values. Keep swapping the value before it until it is
+              greater than the value before it, or until we reach the beginning
+              of the array.
+            </p>
+            <p>
+              Now start from the next index (started at index 1, now index 2 for
+              this iteration). For each successive iteration, begin from the
+              next index in the array. Continue iterating until the last
+              iteration (where the start index is at the end of the array).
+            </p>
+          </div>
+          <div class="selection-desc">
+            <h2>Selection Sort</h2>
+            <p>Time Complexity: O(n<sup>2</sup>)</p>
+            <p>
+              Start from the first value in the array, and mark it as the
+              current minimum value in the array. Traverse the array, and if you
+              find a value that is less than the current minimum, mark it as the
+              current minimum. When you reach the end of the array, swap the
+              minimum value with the first unsorted value (which starts at the
+              beginning of the array).
+            </p>
+            <p>
+              Each time a swap is made, the first unsorted value is 1 index
+              greater in the array. Repeat the process, starting each new
+              iteration from the new first unsorted value until the array is
+              sorted.
+            </p>
+          </div>
+          <div class="quick-desc">
+            <h2>Quick Sort</h2>
+            <p>Time Complexity: O(nlog(n))</p>
+            <p>
+              Begin by selecting a pivot, which can be any number that is in the
+              array. In this implementation, the pivot is the number in the
+              middle of the array. Now, the array will be "partitioned" based on
+              the pivot.
+            </p>
+            <p>
+              Start a left pointer at the beginning of the array and a right
+              pointer at the end of the array. Advance the left pointer to the
+              right until it points to a number that is &gt;= to the pivot.
+              Advance the right pointer to the left until it points to a number
+              that is &lt;= to the pivot. If the left index is &lt;= to the
+              right index (i.e the pointers have not passed each other), then
+              swap the numbers at the two pointers. After this partition, all of
+              the elements that are &lt; the pivot come before the elements that
+              are &gt; the pivot. Note that the pivot number can be swapped.
+            </p>
+            <p>
+              Wherever the left pointer ends up is the "partition point".
+              Quicksort is recursively called on the two subarrays that are
+              divided by the partition point. If quicksort is called on a length
+              1 subarray, nothing happens (i.e the function immediately
+              returns).
+            </p>
+            <!-- <p>
+              Note that in an ideal case, the pivot is always the median of the subarray it is being chosen for. In the worst case, it is always the greatest or the least value in the subarray it is being chosen for.
+            </p> -->
+          </div>
+          <div class="merge-desc">
+            <h2>Merge Sort</h2>
+            <p>Time Complexity: O(nlog(n))</p>
+            <p>
+              Begin by dividing the array into halves. Call the merge sort
+              function on the two halves, then merge the sorted halves.
+            </p>
+            <p>
+              The merge function copies the values from the first and second
+              half into a left and right array. Start a pointer from the start
+              of these arrays. Copy the lowest of the values pointed to into the
+              array and advance its pointer. Repeat this until one of the
+              pointers reaches the end of its array. Then copy the rest of the
+              values from the other array into the main array. A pointer keeps
+              track of which index to copy the values into in the main array
+              (this pointer starts from the index of the first number in the
+              left array).
+            </p>
+            <p>
+              Note that merge sort will first divide the array into subarrays of
+              length 1 before merging arrays together. This is due to the
+              recursive implementation, which calls merge sort on the halves
+              before the merge function.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Sorting Area -->
+      <section id="sorting-area">
+        <div class="sorting-container"></div>
+      </section>
+    </div>
+    <!-- Footer -->
+    <footer id="#main-footer" class="footer bg-dark">
+      Copyright &copy; Brady Malott 2020
+    </footer>
+    <script src="js/sorting.js"></script>
+  </body>
+</html>
